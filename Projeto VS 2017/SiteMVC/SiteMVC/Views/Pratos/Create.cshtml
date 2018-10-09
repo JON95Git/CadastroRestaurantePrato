@@ -1,0 +1,46 @@
+﻿@model SiteMVC.Models.PratoViewModel
+<h1>Novo prato</h1>
+<hr />
+@using (Html.BeginForm("Create", "Pratos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(m => m.NomePrato, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NomePrato,
+                               new { @class = "form-control", @placeholder = "Nome do prato" })
+            @Html.ValidationMessageFor(m => m.NomePrato, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Preco, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Preco,
+                               new { @class = "form-control", @placeholder = "Preço do prato" })
+            @Html.ValidationMessageFor(m => m.Preco, "", new { @class = "text-danger" })
+        </div>
+    </div>
+                   <div class="form-group">
+                        @Html.LabelFor(m => m.IdRestaurante, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(m => m.IdRestaurante ,
+                                               new SelectList(ViewBag.Restaurante, "IdRestaurante", "NomeRestaurante"),
+                                               "Escolha o restaurante", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.IdRestaurante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Salvar Prato" class="btn btn-success" />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+            }
+            <div>
+            </div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

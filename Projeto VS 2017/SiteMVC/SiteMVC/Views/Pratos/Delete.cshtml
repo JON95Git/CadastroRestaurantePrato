@@ -1,0 +1,43 @@
+﻿@model SiteMVC.Models.Prato
+@{
+                /**/
+
+                ViewBag.Title = "Deletar";
+}
+<h2>Deletar Prato</h2>
+<h3 class="text-danger">Deseja deletar este prato ?</h3>
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(m => m.NomePrato, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NomePrato,
+                                      new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PrecoPrato, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PrecoPrato,
+                          new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Restaurantes.NomeRestaurante, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.IdRestaurante, ((String)ViewBag.Restaurantes),
+                          new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Deletar Prato" class="btn btn-danger" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    }
+</div>

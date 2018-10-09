@@ -1,0 +1,29 @@
+﻿@model SiteMVC.Models.RestauranteViewModel
+<h1>Novo restaurante</h1>
+<hr />
+@using (Html.BeginForm("Create", "Restaurantes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.IdRestaurante)
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.NomeRestaurante, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.NomeRestaurante,
+                                   new { @class = "form-control", @placeholder = "Nome do restaurante" })
+                @Html.ValidationMessageFor(m => m.NomeRestaurante, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar Restaurante" class="btn btn-success" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+<div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

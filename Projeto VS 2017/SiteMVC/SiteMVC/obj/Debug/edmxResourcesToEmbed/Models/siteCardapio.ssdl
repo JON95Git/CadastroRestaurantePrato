@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="siteCardapioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TblPrato">
+    <Key>
+      <PropertyRef Name="Idprato" />
+    </Key>
+    <Property Name="Idprato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomePrato" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdRestauranteDono" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblRestaurante">
+    <Key>
+      <PropertyRef Name="IdRestaurante" />
+    </Key>
+    <Property Name="IdRestaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeRestaurante" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdPrato" Type="int" />
+  </EntityType>
+  <Association Name="FK_tblPrato_tblRestaurante">
+    <End Role="TblRestaurante" Type="Self.TblRestaurante" Multiplicity="1" />
+    <End Role="TblPrato" Type="Self.TblPrato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblRestaurante">
+        <PropertyRef Name="IdRestaurante" />
+      </Principal>
+      <Dependent Role="TblPrato">
+        <PropertyRef Name="IdRestauranteDono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurante_tblPrato">
+    <End Role="TblPrato" Type="Self.TblPrato" Multiplicity="0..1" />
+    <End Role="TblRestaurante" Type="Self.TblRestaurante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPrato">
+        <PropertyRef Name="Idprato" />
+      </Principal>
+      <Dependent Role="TblRestaurante">
+        <PropertyRef Name="IdPrato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="siteCardapioModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblPrato" EntityType="Self.TblPrato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblRestaurante" EntityType="Self.TblRestaurante" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblPrato_tblRestaurante" Association="Self.FK_tblPrato_tblRestaurante">
+      <End Role="TblRestaurante" EntitySet="TblRestaurante" />
+      <End Role="TblPrato" EntitySet="TblPrato" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurante_tblPrato" Association="Self.FK_tblRestaurante_tblPrato">
+      <End Role="TblPrato" EntitySet="TblPrato" />
+      <End Role="TblRestaurante" EntitySet="TblRestaurante" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

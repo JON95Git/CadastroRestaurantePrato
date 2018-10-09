@@ -1,0 +1,39 @@
+﻿
+@model SiteMVC.Models.Prato
+@{
+    /**/
+
+    ViewBag.Title = "Detalhes";
+}
+<h2>Detalhes do Prato                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </h2>
+<hr />
+<div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.NomePrato, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.NomePrato,
+                                   new { @class = "form-control", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PrecoPrato, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PrecoPrato,
+                          new { @class = "form-control", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Restaurantes.NomeRestaurante, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.IdRestaurante, ((String)ViewBag.Restaurante),
+                           new { @class = "form-control", @disabled = "disabled" })
+            </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Retornar", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</div>
